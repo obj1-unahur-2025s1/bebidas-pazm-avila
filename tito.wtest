@@ -1,0 +1,32 @@
+import tito.*
+
+// describe sirve para organizar los test
+describe "test de tito" {
+    //metodo especial para test. Siempre dentro del describe y arriba de los tests. Me sirve para inicializar a los objetos
+    method initialize() {
+        tito.consumir(5, whisky)
+    }
+
+    //metodo interno del describe del test. El unico metodo que los test corren por sí solos es el initialize, los otros metodos internos que yo declare debo llamarlos yo. Hago estos metodos internos si es que tengo que usarlo muchas veces.
+    method consumoTerere() {
+        tito.consumir(5, terere)
+    }
+
+    test "tito tiene peso 70" {
+        assert.equals(70, tito.peso())
+    }
+    test "la velocidad de tito es " {
+        assert.equals(0.9**5*490/70,tito.velocidad())
+    }
+
+// el describe es un objeto también. con el self llamo al objeto describe
+    test "ahora la velocidad es 7 porque consumio terere" {
+        self.consumoTerere()
+        assert.equals(7,tito.velocidad())
+    }
+
+    test "si consume cianuro la velocidad es 0 porque muere" {
+        tito.consumir(5, cianuro)
+        assert.equals(0, tito.velocidad())
+    }
+}
